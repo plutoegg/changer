@@ -1,0 +1,23 @@
+{
+  "name": "0x-test-2",
+  "version": "0.0.1",
+  "description": "Testing 0x",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server"
+  },
+  "author": "Will Harborne",
+  "license": "MIT",
+  "repository": "",
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.26.1",
+    "html-webpack-plugin": "^2.28.0",
+    "json-loader": "^0.5.4",
+    "style-loader": "^0.13.1",
+    "web3": "^0.18.2",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
+  },
+  "dependencies": {}
+}
