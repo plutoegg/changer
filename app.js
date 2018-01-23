@@ -12569,15 +12569,9 @@ window.App = {
     web3.eth.getAccounts(function(error, accounts) {
         web3.eth.defaultAccount = accounts[0]
         console.log(accounts[0])
-        try {
-          userAddress = accounts[0]
-          console.log('Here god darn it',accounts[0])
-          accounts.innerHTML = accounts[0]
-        }
-        catch(error) {
-          console.log('Caught error: ', error)
-          accounts.innerHTML = 'Failed: no web3 connection configured'
-        }
+        userAddress = accounts[0]
+        console.log('Here god darn it',accounts[0])
+        accounts.innerHTML = accounts[0]
     })
   },
 
