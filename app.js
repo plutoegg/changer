@@ -12535,8 +12535,8 @@ window.App = {
     web3.eth.defaultAccount = web3.eth.accounts[0]
       dai.balanceOf(web3.eth.accounts[0], function(err, balance) {
 	         if (balance >= buyAmount * (10 ** 18)) {
-             dai.approve(changerAddress, buyAmount * (10 ** 6), {gasLimit: 90000}, function () {
-      	        changer.getUSDT(buyAmount, {gasLimit: 150000}, function () {
+             dai.approve(changerAddress, buyAmount * (10 ** 18), {gas: 90000}, function () {
+      	        changer.getUSDT(buyAmount, {gas: 150000}, function () {
                     alert('Successfully approved and exchanged. Please monitor via etherscan.io/address/' + changerAddress)
       	        })
               })
@@ -12555,8 +12555,8 @@ window.App = {
     web3.eth.defaultAccount = web3.eth.accounts[0]
       usdt.balanceOf(web3.eth.accounts[0], function(err, balance) {
 	         if (balance >= buyAmount * (10 ** 6)) {
-             usdt.approve(changerAddress, buyAmount * (10 ** 6), {gasLimit: 90000}, function () {
-      	        changer.getDAI(buyAmount, {gasLimit: 150000}, function () {
+             usdt.approve(changerAddress, buyAmount * (10 ** 6), {gas: 90000}, function () {
+      	        changer.getDAI(buyAmount, {gas: 150000}, function () {
                     alert('Successfully approved and exchanged. Please monitor via etherscan.io/address/' + changerAddress)
       	        })
               })
