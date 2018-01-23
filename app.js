@@ -12565,13 +12565,12 @@ window.App = {
   },
 
   getAccounts: function () {
-    let accounts = document.getElementById('availableAddresses')
+    let elementID = document.getElementById('availableAddresses')
     web3.eth.getAccounts(function(error, accounts) {
         web3.eth.defaultAccount = accounts[0]
         console.log(accounts[0])
         userAddress = accounts[0]
-        console.log('Here god darn it',accounts[0])
-        accounts.innerHTML = accounts[0]
+        elementID.innerHTML = accounts[0]
     })
   },
 
