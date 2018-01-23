@@ -12534,7 +12534,7 @@ window.App = {
 
     web3.eth.defaultAccount = web3.eth.accounts[0]
       dai.balanceOf(web3.eth.accounts[0], function(err, balance) {
-	         if (balance > buyAmount * (10 ** 18)) {
+	         if (balance >= buyAmount * (10 ** 18)) {
              dai.approve(changerAddress, buyAmount * (10 ** 6), {gasLimit: 90000}, function () {
       	        changer.getUSDT(buyAmount, {gasLimit: 150000}, function () {
                     alert('Successfully approved and exchanged. Please monitor via etherscan.io/address/' + changerAddress)
@@ -12554,7 +12554,7 @@ window.App = {
     const changer = web3.eth.contract(changerABI).at(changerAddress)
     web3.eth.defaultAccount = web3.eth.accounts[0]
       usdt.balanceOf(web3.eth.accounts[0], function(err, balance) {
-	         if (balance > buyAmount * (10 ** 6)) {
+	         if (balance >= buyAmount * (10 ** 6)) {
              usdt.approve(changerAddress, buyAmount * (10 ** 6), {gasLimit: 90000}, function () {
       	        changer.getDAI(buyAmount, {gasLimit: 150000}, function () {
                     alert('Successfully approved and exchanged. Please monitor via etherscan.io/address/' + changerAddress)
@@ -12591,14 +12591,17 @@ window.App = {
       if (err) console.log(err)
       DAIbalance.innerHTML = web3.toBigNumber(balance).shift(-18).toFixed(5)
     })
-    usdt.balanceOf(userAddress, function (err, balance) {
-      if (err) console.log(err)
-      yourUSDTbalance.innerHTML = web3.toBigNumber(balance).shift(-6).toFixed(5)
+    web3.eth.getAccounts(function(error, accounts) {
+        usdt.balanceOf(accounts[0], function (err, balance) {
+          if (err) console.log(err)
+          yourUSDTbalance.innerHTML = web3.toBigNumber(balance).shift(-6).toFixed(5)
+        })
+        dai.balanceOf(accounts[0], function (err, balance) {
+          if (err) console.log(err)
+          yourDAIbalance.innerHTML = web3.toBigNumber(balance).shift(-18).toFixed(5)
+        })
     })
-    dai.balanceOf(userAddress, function (err, balance) {
-      if (err) console.log(err)
-      yourDAIbalance.innerHTML = web3.toBigNumber(balance).shift(-18).toFixed(5)
-    })
+
   }
 }
 
