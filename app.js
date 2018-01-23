@@ -12568,9 +12568,9 @@ window.App = {
     let accounts = document.getElementById('availableAddresses')
     web3.eth.getAccounts(function(error, accounts) {
         web3.eth.defaultAccount = accounts[0]
-        console.log(web3.eth.accounts[0])
+        console.log(accounts[0])
         try {
-          userAddress = web3.eth.accounts[0]
+          userAddress = accounts[0]
           accounts.innerHTML = userAddress
         }
         catch(error) {
