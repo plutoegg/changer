@@ -12571,7 +12571,8 @@ window.App = {
         console.log(accounts[0])
         try {
           userAddress = accounts[0]
-          accounts.innerHTML = userAddress
+          console.log('Here god darn it',accounts[0])
+          accounts.innerHTML = accounts[0]
         }
         catch(error) {
           console.log('Caught error: ', error)
