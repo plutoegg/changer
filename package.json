@@ -10,6 +10,7 @@
   "license": "MIT",
   "repository": "",
   "dependencies": {
+    "bignumber.js": "^5.0.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.1",
     "html-webpack-plugin": "^2.28.0",
