@@ -12566,12 +12566,17 @@ window.App = {
 
   getAccounts: function () {
     let elementID = document.getElementById('availableAddresses')
-    web3.eth.getAccounts(function(error, accounts) {
+    try {
+      web3.eth.getAccounts(function(error, accounts) {
         web3.eth.defaultAccount = accounts[0]
         console.log(accounts[0])
         userAddress = accounts[0]
         elementID.innerHTML = accounts[0]
-    })
+      })
+    }
+    catch (error) {
+      elementID.innerHTML = 'You must have MetaMask installed and unlocked to use this DApp.'
+    }
   },
 
   getBalances: function () {
