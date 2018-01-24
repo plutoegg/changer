@@ -4,12 +4,14 @@
   "description": "Dai to USDT",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --port $PORT"
+    "start": "webpack-dev-server",
+    "deploy": "gh-pages -d build"
   },
   "author": "Will Harborne",
   "license": "MIT",
   "repository": "",
   "dependencies": {
+    "aws-sdk": "^2.186.0",
     "bignumber.js": "^5.0.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.1",
@@ -22,5 +24,8 @@
   },
   "engines": {
     "node": "8.0.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.1.0"
   }
 }

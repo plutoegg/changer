@@ -5,7 +5,9 @@ module.exports = {
     entry:   './app/app.js',
     output:  {
         path:     path.resolve(__dirname, 'build'),
-        filename: 'app.js'
+        filename: 'app.js',
+        // Tweak this to match your GitHub project name
+        publicPath: "/changer/"
     },
     plugins: [
         // Copy our app's index.html to the build folder.
