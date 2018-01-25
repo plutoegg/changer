@@ -12535,10 +12535,19 @@ window.App = {
     web3.eth.defaultAccount = web3.eth.accounts[0]
       dai.balanceOf(web3.eth.accounts[0], function(err, balance) {
 	         if (balance >= buyAmount * (10 ** 18)) {
-             dai.approve(changerAddress, buyAmount * (10 ** 18), {gas: 90000}, function () {
-      	        changer.getUSDT(buyAmount, {gas: 150000}, function () {
-                    alert('Successfully approved and exchanged. Please monitor via etherscan.io/address/' + changerAddress)
-      	        })
+              dai.allowance(userAddress, changerAddress, function (err, allowed) {
+                if (allowed < buyAmount * (10 ** 18)) {
+                  const unlimitedAllowance = web3.toBigNumber(2).pow(256).sub(1).toString(10)
+                  dai.approve(changerAddress, unlimitedAllowance, {gas: 90000}, function () {
+                    changer.getUSDT(buyAmount, {gas: 150000}, function () {
+                       alert('Successfully approved and exchanged. Please monitor via etherscan.io/address/' + changerAddress)
+                     })
+                  })
+                } else {
+                  changer.getUSDT(buyAmount, {gas: 150000}, function () {
+                     alert('Successfully exchanged. Please monitor via etherscan.io/address/' + changerAddress)
+                   })
+                }
               })
 	         } else { alert('You do not have enough DAI to buy ' + buyAmount + ' USDT. You only have '+ web3.toBigNumber(balance).shift(-18) + ' DAI.' )}
       })
@@ -12555,11 +12564,20 @@ window.App = {
     web3.eth.defaultAccount = web3.eth.accounts[0]
       usdt.balanceOf(web3.eth.accounts[0], function(err, balance) {
 	         if (balance >= buyAmount * (10 ** 6)) {
-             usdt.approve(changerAddress, buyAmount * (10 ** 6), {gas: 90000}, function () {
-      	        changer.getDAI(buyAmount, {gas: 150000}, function () {
-                    alert('Successfully approved and exchanged. Please monitor via etherscan.io/address/' + changerAddress)
-      	        })
-              })
+             usdt.allowance(userAddress, changerAddress, function (err, allowed) {
+               if (allowed < buyAmount * (10 ** 6)) {
+                 const unlimitedAllowance = web3.toBigNumber(2).pow(256).sub(1).toString(10)
+                 usdt.approve(changerAddress, unlimitedAllowance, {gas: 90000}, function () {
+                   changer.getDAI(buyAmount, {gas: 150000}, function () {
+                      alert('Successfully approved and exchanged. Please monitor via etherscan.io/address/' + changerAddress)
+                    })
+                 })
+               } else {
+                 changer.getDAI(buyAmount, {gas: 150000}, function () {
+                    alert('Successfully exchanged. Please monitor via etherscan.io/address/' + changerAddress)
+                  })
+               }
+             })
 	         } else { alert('You do not have enough USDT to buy ' + buyAmount + ' DAI. You only have '+ web3.toBigNumber(balance).shift(-6) + ' USDT.' )}
       })
   },
